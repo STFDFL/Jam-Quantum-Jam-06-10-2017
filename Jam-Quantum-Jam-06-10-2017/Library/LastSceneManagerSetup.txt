@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Stefano/Scenes/Movers.unity
+  isLoaded: 1
+  isActive: 1
