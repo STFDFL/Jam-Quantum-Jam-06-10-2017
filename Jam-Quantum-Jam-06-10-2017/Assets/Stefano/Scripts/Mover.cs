@@ -31,8 +31,10 @@ public class Mover : MonoBehaviour {
                 moverObjects[0].SetActive(false);
                 moverObjects[1].SetActive(false);
                 moverObjects[2].SetActive(false);
+                StartCoroutine("Phase");
                 break;
             case ObstacleType.Ring:
+
                 break;
             default:
                 break;
@@ -55,7 +57,7 @@ public class Mover : MonoBehaviour {
             case ObstacleType.Expander:               
                 break;
             case ObstacleType.Phaser:
-                StartCoroutine("Phase");
+               
                 break;
             case ObstacleType.Ring:
                 transform.Rotate(Vector3.up * Time.deltaTime * speed);

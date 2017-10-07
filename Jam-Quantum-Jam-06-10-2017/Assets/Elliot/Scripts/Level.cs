@@ -17,7 +17,7 @@ public class Level : MonoBehaviour
     {
         myTheme = themes;
 
-        this.transform.GetChild(3).GetComponent<Renderer>().material = GameManager.Instance.GetThemeColour(myTheme);
+        //this.transform.GetChild(3).GetComponent<Renderer>().material = GameManager.Instance.GetThemeColour(myTheme);
 
         this.transform.position = new Vector3(0, yPosition, 0);
 
@@ -37,17 +37,6 @@ public class Level : MonoBehaviour
         }
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void AddToSection(GameObject toAdd)
     {

@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public bool stopMovement = false;
 
+    [Header("UI Variables")]
+
     public GameObject LosePanel;
 
     public GameObject WinPanel;
@@ -79,6 +81,10 @@ public class GameManager : MonoBehaviour
     public Text playersLeftText;
 
     public bool gameHasEnded;
+
+    [Header("Movers Variables")]
+
+    public Transform[] moversCollection;
 
     #endregion
     #region Sound Variables
@@ -200,7 +206,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckIfAnyAlive()
     {
-        if(activePlayers.Count < 0)
+        if(activePlayers.Count == 0)
         {
             // End Game - Lose
             AudioSource aS = GetComponent<AudioSource>();

@@ -641,7 +641,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.46323532, g: 0.41114628, b: 0.26908523, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -679,7 +679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: 68.84, z: 0}
 --- !u!1 &679743799
 GameObject:
@@ -735,6 +735,12 @@ MonoBehaviour:
   WinPanel: {fileID: 107298644}
   playersLeftText: {fileID: 1599968703}
   gameHasEnded: 0
+  moversCollection:
+  - {fileID: 4645241658228666, guid: 17d8bc31115da6346853dfa671db0ee1, type: 2}
+  - {fileID: 4011818279960218, guid: c6b705f14b930ae4e98ac51f3bc50446, type: 2}
+  - {fileID: 4226645168358234, guid: 0fe21098aa2d7f54aa86bfb3a69e558c, type: 2}
+  - {fileID: 4132677507264284, guid: 6e2e862a5987ed64e9f1fc98e94fd082, type: 2}
+  - {fileID: 4227983178930058, guid: 4919839b8a63ab04eafc0638c569c6f2, type: 2}
   audioClip_Die: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
   audioClip_LoseGame: {fileID: 8300000, guid: 70fe92b578c764a68b540870f64f4ef9, type: 3}
   audioClip_WinGame: {fileID: 8300000, guid: d9c171832cd5c4023b8274b926f924a8, type: 3}
@@ -918,7 +924,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1009444307
 GameObject:
@@ -969,7 +975,7 @@ Transform:
   - {fileID: 1873235509}
   - {fileID: 539864025}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1016358113
 Prefab:
@@ -1008,7 +1014,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4235727514924652, guid: a94079ccc12b0354cae3a5f3519b0ff4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1910125628210700, guid: a94079ccc12b0354cae3a5f3519b0ff4, type: 2}
       propertyPath: m_IsActive
@@ -1220,15 +1226,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4222652521604610, guid: acdf7cbf2a245f141b801b427c540ff6, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1313497356881938, guid: acdf7cbf2a245f141b801b427c540ff6, type: 2}
       propertyPath: m_Name
       value: Level (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1313497356881938, guid: acdf7cbf2a245f141b801b427c540ff6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acdf7cbf2a245f141b801b427c540ff6, type: 2}
