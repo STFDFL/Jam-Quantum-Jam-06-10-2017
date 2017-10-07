@@ -19,12 +19,14 @@ public class PlayerScript : MonoBehaviour
                 GameManager.Instance.stopMovement = true;
                 break;
 
-            case "obstacle":
+            case "mover":
                 GameManager.Instance.KillPlayer(this.gameObject);
                 break;
 
             case "EndGate":
                 // Win!
+                GameManager gM = GameObject.Find("GameManager").GetComponent<GameManager>();
+                gM.WinGame();
                 break;
 
             //case "":

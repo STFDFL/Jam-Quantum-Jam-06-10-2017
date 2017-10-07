@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Elliot/Scenes/Elliot_Scene.unity
+    guid: b97c39fcdfa404940a57e9a4b83c2833

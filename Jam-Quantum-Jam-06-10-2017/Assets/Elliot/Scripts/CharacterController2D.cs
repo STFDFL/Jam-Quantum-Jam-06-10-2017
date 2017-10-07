@@ -11,6 +11,8 @@ public class CharacterController2D : MonoBehaviour
     private bool pressedJump = false;
     private BoxCollider coll;
 
+    
+
     public void CharacterControllerConstructor(GameObject player)
     {
         thePlayer = player;
@@ -40,6 +42,9 @@ public class CharacterController2D : MonoBehaviour
                     pressedJump = true;
 
                     velocity.y = GameManager.Instance.jumpSpeed;
+
+                    //play jump sound
+
                 }
 
                 if (Input.GetAxis("Jump") <= 0)
