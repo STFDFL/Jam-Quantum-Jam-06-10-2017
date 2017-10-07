@@ -17,7 +17,7 @@ static function CreatePrefab() {
     var selectedObjects: GameObject[] = Selection.gameObjects;
     for (var go: GameObject in selectedObjects) {
         var name: String = go.name;	// Store the name of our selection
-        var localPath: String = "Assets/Prefabs/" + name + ".prefab";	// Create the path for the prefab	
+        var localPath: String = "Assets/Elliot/Prefabs/" + name + ".prefab";	// Create the path for the prefab	
 
         // Determine whether prefab already exists
         if (AssetDatabase.LoadAssetAtPath(localPath, GameObject)) {
