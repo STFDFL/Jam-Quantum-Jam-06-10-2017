@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1, y: 0}
   m_SizeDelta: {x: -600, y: -400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &107298646
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.647}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.44371194, g: 0.5147059, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -741,6 +741,9 @@ MonoBehaviour:
   - {fileID: 4226645168358234, guid: 0fe21098aa2d7f54aa86bfb3a69e558c, type: 2}
   - {fileID: 4132677507264284, guid: 6e2e862a5987ed64e9f1fc98e94fd082, type: 2}
   - {fileID: 4227983178930058, guid: 4919839b8a63ab04eafc0638c569c6f2, type: 2}
+  - {fileID: 4531861628822946, guid: 134bcf8e3a15d5a4ba67ea892a1a7f33, type: 2}
+  - {fileID: 4531861628822946, guid: 134bcf8e3a15d5a4ba67ea892a1a7f33, type: 2}
+  - {fileID: 4531861628822946, guid: 134bcf8e3a15d5a4ba67ea892a1a7f33, type: 2}
   audioClip_Die: {fileID: 8300000, guid: dc9f34f8f8083485187956f1e0a5df2f, type: 3}
   audioClip_LoseGame: {fileID: 8300000, guid: 70fe92b578c764a68b540870f64f4ef9, type: 3}
   audioClip_WinGame: {fileID: 8300000, guid: d9c171832cd5c4023b8274b926f924a8, type: 3}
@@ -1160,7 +1163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.44852942, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1346,7 +1349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.64705884, g: 0.38823524, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1511,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.647}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
