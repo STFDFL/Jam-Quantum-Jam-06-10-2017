@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour {
 
-    public GameObject moverObject;
+    public GameObject[] moverObjects;
 
-    public enum ObstacleType {Rotator, Flyer, Expander };
+    public enum ObstacleType {Rotator, Flyer, Expander, Phaser, Ring,  };
     public ObstacleType obstacleType;
     public Transform[] locations;
-
-
+    Rigidbody moverRigidBody;
 
     public float speed;
     public float delay;
@@ -18,55 +17,80 @@ public class Mover : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-
         switch (obstacleType)
         {
             case ObstacleType.Rotator:
-                StartCoroutine(ChangeSpeed(10,30));
+                StartCoroutine(ChangeSpeed(10,40));
                 break;
             case ObstacleType.Flyer:              
                 break;
             case ObstacleType.Expander:
-                break;
-            default:
-                break;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        switch (obstacleType)
-        {
-            case ObstacleType.Rotator:
-                moverObject.transform.Rotate(Vector3.right * Time.deltaTime * (speed * 10));
-                break;
-            case ObstacleType.Flyer:
-                transform.Rotate(Vector3.right * Time.deltaTime * speed);
-                transform.Rotate(Vector3.up * Time.deltaTime * speed);
-                moverObject.transform.Rotate(Vector3.right * Time.deltaTime * (speed * 10));
-                break;
-            case ObstacleType.Expander:
                 StartCoroutine("ExpanderAnimation");
                 break;
+            case ObstacleType.Phaser:
+                moverObjects[0].SetActive(false);
+                moverObjects[1].SetActive(false);
+                moverObjects[2].SetActive(false);
+                break;
+            case ObstacleType.Ring:
+                break;
             default:
                 break;
         }
-
     }
 
     // Update is called once per frame
     void Update ()
     {
-		
-	}
+        switch (obstacleType)
+        {
+            case ObstacleType.Rotator:
+                moverObjects[0].transform.Rotate(Vector3.left * Time.deltaTime * (speed * 10));
+                break;
+            case ObstacleType.Flyer:
+                transform.Rotate(Vector3.right * Time.deltaTime * speed);
+                transform.Rotate(Vector3.up * Time.deltaTime * speed);
+                moverObjects[0].transform.Rotate(Vector3.right * Time.deltaTime * (speed * 10));
+                break;
+            case ObstacleType.Expander:               
+                break;
+            case ObstacleType.Phaser:
+                StartCoroutine("Phase");
+                break;
+            case ObstacleType.Ring:
+                transform.Rotate(Vector3.up * Time.deltaTime * speed);
+                break;
+            default:
+                break;
+        }
+    }
 
     IEnumerator Phase()
     {
-        while(true)
+        bool flag = false;
+        while (true)
         {
-
+            if(!flag)
+            {
+                moverObjects[0].SetActive(false);
+                moverObjects[1].SetActive(false);
+                moverObjects[2].SetActive(false);
+                moverObjects[3].SetActive(true);
+                moverObjects[4].SetActive(true);
+                moverObjects[5].SetActive(true);
+                flag = true;
+            }
+            else
+            {
+                moverObjects[0].SetActive(true);
+                moverObjects[1].SetActive(true);
+                moverObjects[2].SetActive(true);
+                moverObjects[3].SetActive(false);
+                moverObjects[4].SetActive(false);
+                moverObjects[5].SetActive(false);
+                flag = false;
+            }           
             yield return new WaitForSeconds(delay);
-
         }
     }
 
@@ -75,7 +99,7 @@ public class Mover : MonoBehaviour {
         bool flag = false;
         while (true)
         {
-            if(flag == false)
+            if(!flag)
             {
                 yield return new WaitForSeconds(delay);
                 speed = speed1;
@@ -93,14 +117,12 @@ public class Mover : MonoBehaviour {
     IEnumerator ExpanderAnimation()
     {
         float maxSize = 7f;
-        float growFactor = 0.5f;
-        float waitTime = 2f;
+        float growFactor = 1.1f;
+        float waitTime = 0.1f;
         float timer = 0;
 
-        while (true) // this could also be a condition indicating "alive or dead"
+        while (true)
         {
-            // we scale all axis, so they will have the same value, 
-            // so we can work with a float instead of comparing vectors
             while (maxSize > transform.localScale.x)
             {
                 timer += Time.deltaTime;
@@ -108,7 +130,6 @@ public class Mover : MonoBehaviour {
                 yield return null;
             }
             // reset the timer
-
             yield return new WaitForSeconds(waitTime);
 
             timer = 0;
@@ -118,9 +139,10 @@ public class Mover : MonoBehaviour {
                 transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
                 yield return null;
             }
-
             timer = 0;
             yield return new WaitForSeconds(waitTime);
         }
     }
+
+   
 }
