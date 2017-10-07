@@ -15,8 +15,7 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case "Wall":
-                Debug.Log("Wall!");
-                GameManager.Instance.stopMovement = true;
+
                 break;
 
             case "obstacle":

@@ -21,6 +21,10 @@ public class Level : MonoBehaviour
 
         this.transform.position = new Vector3(0, yPosition, 0);
 
+        myPlayer = this.transform.GetChild(0).gameObject;
+
+        GameManager.Instance.activePlayers.Add(myPlayer);
+
         //for (int i = 0; i < GameManager.Instance.numberOfSections; i++)
         //{
         //    GameObject newSection = Instantiate(GameManager.Instance.sectionPrefab, this.transform);

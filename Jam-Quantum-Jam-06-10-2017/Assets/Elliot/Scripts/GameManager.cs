@@ -53,13 +53,15 @@ public class GameManager : MonoBehaviour
 
     public int numberOfSections = 0;
 
-    public List<Level> levels = new List<Level>();
-
-    public List<GameObject> activePlayers;
-
     public GameObject levelPrefab;
 
     public GameObject sectionPrefab;
+
+    [Header("Active Levels")]
+    public List<Level> levels = new List<Level>();
+
+    [Header("Active Players")]
+    public List<GameObject> activePlayers;
 
     public Material[] colours;
 
@@ -115,7 +117,7 @@ public class GameManager : MonoBehaviour
             player = levels[playerToUse].transform.GetChild(0).gameObject;
             Camera.main.gameObject.AddComponent<CharacterController2D>();
             Camera.main.GetComponent<CharacterController2D>().CharacterControllerConstructor(player);
-            offset = new Vector3(20, ((playerToUse - 1) * -6) + 1.5f, -40);
+            offset = new Vector3(20, ((playerToUse - 1) * -6) + 2f, -40);
         }
     }
 
