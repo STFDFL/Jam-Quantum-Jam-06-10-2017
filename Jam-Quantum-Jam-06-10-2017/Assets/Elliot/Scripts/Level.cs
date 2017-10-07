@@ -8,10 +8,10 @@ public class Level : MonoBehaviour
     public PlayerState myPlayerState;
 
     public GameObject myPlayer;
-    public GameObject[] mySections;
-    public GameObject[] obstacles;
-    public GameObject[] enemies;
-    public GameObject[] pickups;
+    public List<GameObject> mySections = new List<GameObject>();
+    //public GameObject[] obstacles;
+    //public GameObject[] enemies;
+    //public GameObject[] pickups;
 
     public void LevelConstructor(Themes themes, float yPosition)
     {
@@ -26,6 +26,11 @@ public class Level : MonoBehaviour
         //    GameObject newSection = Instantiate(GameManager.Instance.sectionPrefab, this.transform);
         //    newSection.transform.position = new Vector3(newSection.transform.localScale.x * i, 0, 0);
         //}
+
+        foreach (Transform section in this.transform.GetChild(8))
+        {
+            mySections.Add(section.gameObject);
+        }
     }
 
     // Use this for initialization
@@ -38,5 +43,14 @@ public class Level : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void AddToSection(GameObject toAdd)
+    {
+        for (int i = 0; i < mySections.Count - 1; i++)
+        {
+            // This is the object location to spawn to
+            mySections[i].transform.GetChild(0);
+        }
     }
 }
