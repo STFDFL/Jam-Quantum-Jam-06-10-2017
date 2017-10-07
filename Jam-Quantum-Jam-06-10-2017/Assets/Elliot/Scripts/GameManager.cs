@@ -57,13 +57,15 @@ public class GameManager : MonoBehaviour
 
     public int numberOfSections = 0;
 
-    public List<Level> levels = new List<Level>();
-
-    public List<GameObject> activePlayers;
-
     public GameObject levelPrefab;
 
     public GameObject sectionPrefab;
+
+    [Header("Active Levels")]
+    public List<Level> levels = new List<Level>();
+
+    [Header("Active Players")]
+    public List<GameObject> activePlayers;
 
     public Material[] colours;
 

@@ -57,15 +57,28 @@ public class CharacterController2D : MonoBehaviour
                 velocity.y -= GameManager.Instance.fallSpeed * Time.deltaTime;
             }
 
+            if(CheckLeftWall() == true)
+            {
+                velocity.x -= 10;
+            }
+
+            if(CheckRightWall() == true)
+            {
+                velocity.x += 10;
+            }
+
             Vector3 movementVector = new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, 0);
 
-            thePlayer.transform.Translate(movementVector);
+            foreach (GameObject player in GameManager.Instance.activePlayers)
+            {
+                player.transform.Translate(movementVector);
+            }
         }
     }
 
     bool CheckGrounded()
     {
-        if (Physics.Raycast(thePlayer.transform.position, -Vector3.up, distToGround - 0.1f))
+        if (Physics.Raycast(thePlayer.transform.position, -Vector3.up, distToGround))
         {
             return true;
         }
@@ -73,5 +86,43 @@ public class CharacterController2D : MonoBehaviour
         return false;
     }
 
+    bool CheckLeftWall()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(thePlayer.transform.position, -Vector3.left, out hit, coll.bounds.extents.x - 0.2f))
+        {
+            if (hit.collider.gameObject.CompareTag("Wall"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 
+    bool CheckRightWall()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(thePlayer.transform.position, -Vector3.right, out hit, coll.bounds.extents.x + 0.2f))
+        {
+            if (hit.collider.gameObject.CompareTag("Wall"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
