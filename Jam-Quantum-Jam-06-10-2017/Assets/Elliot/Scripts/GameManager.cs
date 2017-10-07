@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum Themes { Red, Blue, Yellow, White, Black }
 public enum PlayerState { Alive, Dead }
@@ -75,6 +76,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject WinPanel;
 
+    public Text playersLeftText;
+
+    public bool gameHasEnded;
+
     #endregion
     #region Sound Variables
 
@@ -141,7 +146,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.A) && gameHasEnded)
+        {
+            SceneManager.LoadScene("Elliot_Scene");
 
+        }
+        if (Input.GetKeyDown(KeyCode.M) && gameHasEnded)
+        {
+            SceneManager.LoadScene("MainMenu");
+
+        }
     }
 
     public Material GetThemeColour(Themes themes)
@@ -193,8 +207,9 @@ public class GameManager : MonoBehaviour
             aS.Stop();
             aS.clip = audioClip_LoseGame;
             aS.Play();
+            aS.loop = false;
             LosePanel.SetActive(true);
-            
+            gameHasEnded = true;
         }
     }
 
@@ -205,12 +220,12 @@ public class GameManager : MonoBehaviour
         aS.Stop();
         aS.clip = audioClip_WinGame;
         aS.Play();
+        aS.loop = false;
         WinPanel.SetActive(true);
-
+        Debug.Log("Players left" + activePlayers.Count.ToString());
+        playersLeftText.text = activePlayers.Count.ToString();
+        gameHasEnded = true;
     }
 
-    public void LoadLevel(string levelToLoad)
-    {
-        SceneManager.LoadScene(levelToLoad);
-    }
+
 }

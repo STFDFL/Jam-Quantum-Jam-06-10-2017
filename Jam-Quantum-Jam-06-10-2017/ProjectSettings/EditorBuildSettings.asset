@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Davide/Scenes/MainMenu.unity
+    guid: 44d5d350317480f458082bbdff54dbd0
+  - enabled: 1
     path: Assets/Elliot/Scenes/Elliot_Scene.unity
     guid: b97c39fcdfa404940a57e9a4b83c2833
