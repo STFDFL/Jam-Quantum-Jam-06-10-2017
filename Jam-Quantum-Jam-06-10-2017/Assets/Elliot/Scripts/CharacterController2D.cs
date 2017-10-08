@@ -25,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
     public void UpdatePlayer(GameObject player)
     {
         thePlayer = player;
-        
+
         this.gameObject.GetComponent<CameraFollow>().CameraFollowConstructor(player.transform);
 
         coll = thePlayer.GetComponent<BoxCollider>();
@@ -43,7 +43,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 velocity.y = 0;
 
-                if (Input.GetButtonDown("Jump") && pressedJump == false)
+                if (Input.GetAxis("Jump") > 0 && pressedJump == false)
                 {
                     GameManager.Instance.isJumping = true;
                     pressedJump = true;
@@ -57,7 +57,7 @@ public class CharacterController2D : MonoBehaviour
                 if (Input.GetAxis("Jump") <= 0)
                 {
                     GameManager.Instance.isJumping = false;
-                    pressedJump = false;                  
+                    pressedJump = false;
                 }
             }
             else
@@ -110,6 +110,22 @@ public class CharacterController2D : MonoBehaviour
             {
                 player.transform.Translate(movementVector);
                 player.transform.GetChild(0).localScale = thePlayer.transform.GetChild(0).localScale;
+
+                if (pressedJump == true)
+                {
+                    if (player.GetComponent<PlayerScript>().animator.GetBool("Jump") == false)
+                    {
+                        player.GetComponent<PlayerScript>().Jump();
+                    }                        
+                }
+                else if (pressedJump == false && player.transform.GetComponent<PlayerScript>().jumping == true)
+                {
+                    if (player.GetComponent<PlayerScript>().animator.GetBool("Jump") == true)
+                    {
+                        player.GetComponent<PlayerScript>().StopJump();
+                    }
+                }
+
             }
         }
 

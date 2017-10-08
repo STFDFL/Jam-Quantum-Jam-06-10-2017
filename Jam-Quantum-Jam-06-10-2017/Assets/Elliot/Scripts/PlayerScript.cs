@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     internal Animator animator;
+    public bool jumping = false;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case "Wall":
-
+                PlayerDead();
                 break;
 
             case "mover":
@@ -59,6 +60,25 @@ public class PlayerScript : MonoBehaviour
 
     public void Jump()
     {
-        animator.SetBool("Jump", true);
+        if (jumping == false)
+        {
+            animator.SetBool("Jump", true);
+            jumping = true;
+        }
+    }
+
+    public void StopJump()
+    {
+        if (jumping == true)
+        {
+            animator.SetBool("Jump", false);
+            jumping = false;
+        }
+    }
+
+    public void PlayerDead()
+    {
+        if(animator.GetBool("Dead") == false)
+        animator.SetBool("Dead", true);
     }
 }
