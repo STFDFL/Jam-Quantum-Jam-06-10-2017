@@ -88,7 +88,15 @@ public class GameManager : MonoBehaviour
 
     public Transform[] moversCollection;
 
+    public float playerVelocity = 0;
+
+    public bool playerFacingRight = true;
+
+    public bool isJumping = false;
+
+
     #endregion
+
     #region Sound Variables
 
     [HeaderAttribute("Sound Variables")]
@@ -99,11 +107,13 @@ public class GameManager : MonoBehaviour
     public AudioClip audioClip_WinGame;
 
     #endregion
+
     // Use this for initialization
     void Start()
     {
         levels.Clear();
         activePlayers.Clear();
+        offset = new Vector3(10, -18, -38);
 
         for (int i = 0; i < numberOfPlayers; i++)
         {
@@ -143,18 +153,32 @@ public class GameManager : MonoBehaviour
 
         if (player == null)
         {
-            int playerToUse = Mathf.FloorToInt(numberOfPlayers / 2) - 1;
-            player = levels[playerToUse].transform.GetChild(0).gameObject;
+            SetControlledCharacter();
+        }
+    }
+
+    private void SetControlledCharacter(GameObject playerToUse = null)
+    {
+        if (playerToUse != null)
+        {
+            player = playerToUse;
+            Camera.main.GetComponent<CharacterController2D>().UpdatePlayer(player);
+        }
+        else
+        {
+            int playerNumber = 0;
+            player = levels[playerNumber].transform.GetChild(0).gameObject;
             Camera.main.gameObject.AddComponent<CharacterController2D>();
             Camera.main.GetComponent<CharacterController2D>().CharacterControllerConstructor(player);
-            offset = new Vector3(20, ((playerToUse - 1) * -6) + 2f, -40);
         }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A) && gameHasEnded)
+        if (Input.GetKeyDown(KeyCode.A) && gameHasEnded)
         {
             SceneManager.LoadScene("Elliot_Scene");
 
@@ -198,7 +222,27 @@ public class GameManager : MonoBehaviour
     {
         if (activePlayers.Contains(playerToKill))
         {
+
             Instantiate(deathParticles, playerToKill.transform.position, Quaternion.identity);
+
+            if (playerToKill == player)
+            {
+                // active player about to die, swap players for character controller
+                if (activePlayers.Count - 1 > 0)
+                {
+                    // ensure if this player dies, there is another possible, if so, set to that player.
+                    foreach (GameObject alivePlayer in activePlayers)
+                    {
+                        if (alivePlayer != playerToKill)
+                        {
+                            SetControlledCharacter(alivePlayer);
+                            break;
+                        }
+                    }
+                }
+            }
+
+
             playerToKill.SetActive(false);
             playerToKill.transform.parent.GetChild(3).position = new Vector3(playerToKill.transform.parent.GetChild(3).position.x, playerToKill.transform.parent.GetChild(3).position.y, 0);
             playerToKill.transform.parent.GetChild(3).localScale = new Vector3(80, 5, 2);
