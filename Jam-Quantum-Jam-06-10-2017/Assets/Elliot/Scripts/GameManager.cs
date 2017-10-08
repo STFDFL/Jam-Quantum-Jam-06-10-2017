@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour
 
     public bool stopMovement = false;
 
+    public Transform deathParticles;
+
     [Header("UI Variables")]
 
     public GameObject LosePanel;
@@ -196,6 +198,7 @@ public class GameManager : MonoBehaviour
     {
         if (activePlayers.Contains(playerToKill))
         {
+            Instantiate(deathParticles, playerToKill.transform.position, Quaternion.identity);
             playerToKill.SetActive(false);
             playerToKill.transform.parent.GetChild(3).position = new Vector3(playerToKill.transform.parent.GetChild(3).position.x, playerToKill.transform.parent.GetChild(3).position.y, 0);
             playerToKill.transform.parent.GetChild(3).localScale = new Vector3(80, 5, 2);
@@ -203,6 +206,8 @@ public class GameManager : MonoBehaviour
             CheckIfAnyAlive();
         }
     }
+
+
 
     private void CheckIfAnyAlive()
     {
