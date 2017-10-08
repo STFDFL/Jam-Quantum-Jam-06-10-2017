@@ -279,6 +279,12 @@ public class GameManager : MonoBehaviour
         WinPanel.SetActive(true);
         Debug.Log("Players left" + activePlayers.Count.ToString());
         playersLeftText.text = activePlayers.Count.ToString();
+
+        //check if needs to save the new result for the main menu
+        int previousResult = PlayerPrefs.GetInt("PlayersLeft");
+        if(previousResult < activePlayers.Count)
+            PlayerPrefs.SetInt("PlayersLeft", activePlayers.Count);
+
         gameHasEnded = true;
     }
 

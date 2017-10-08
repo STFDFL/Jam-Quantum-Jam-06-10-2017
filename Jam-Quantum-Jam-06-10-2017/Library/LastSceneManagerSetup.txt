@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Davide/Scenes/MenuProCore.unity
+- path: Assets/Elliot/Scenes/Elliot_Scene.unity
   isLoaded: 1
   isActive: 1
