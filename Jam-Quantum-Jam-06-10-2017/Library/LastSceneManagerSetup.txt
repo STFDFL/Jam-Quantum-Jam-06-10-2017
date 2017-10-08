@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Davide/Scenes/FusilloModelEnemy.unity
+- path: Assets/Davide/Scenes/SpherewithDecoration.unity
   isLoaded: 1
   isActive: 1
