@@ -16,7 +16,9 @@ public class CameraFollow : MonoBehaviour
     {
         if (localTargetRef != null)
         {
-            Vector3 desiredPosition = localTargetRef.position + GameManager.Instance.offset;
+            Vector3 tempPos = localTargetRef.position;
+            tempPos.y = 0;
+            Vector3 desiredPosition = tempPos + GameManager.Instance.offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, GameManager.Instance.smoothSpeed);
             transform.position = smoothedPosition;
         }

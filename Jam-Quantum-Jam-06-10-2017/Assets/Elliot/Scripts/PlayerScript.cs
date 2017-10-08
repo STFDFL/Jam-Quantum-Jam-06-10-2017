@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    internal Animator animator;
+
+    private void Start()
+    {
+        animator = transform.GetChild(0).GetComponent<Animator>();
+    }
+
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
-
         switch (other.gameObject.tag)
         {
             case "StartGate":
@@ -28,11 +33,32 @@ public class PlayerScript : MonoBehaviour
                 gM.WinGame();
                 break;
 
+            case "SpawnLoc":
+                GameManager.Instance.KillPlayer(this.gameObject);
+                break;
+
             //case "":
             //    break;
 
             default:
                 break;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        int toUse = 0;
+
+        if ((GameManager.Instance.playerVelocity > 0 || GameManager.Instance.playerVelocity < 0) && GameManager.Instance.isJumping == false)
+        {
+            toUse = 1;
+        }
+
+        animator.SetInteger("Speed", toUse);
+    }
+
+    public void Jump()
+    {
+        animator.SetBool("Jump", true);
     }
 }

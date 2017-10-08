@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Elliot/Scenes/Elliot_Scene.unity
+- path: Assets/Elliot/Scenes/Animation/Elliot_AnimationScene.unity
   isLoaded: 1
   isActive: 1

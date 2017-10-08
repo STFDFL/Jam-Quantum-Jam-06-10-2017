@@ -11,13 +11,21 @@ public class CharacterController2D : MonoBehaviour
     private bool pressedJump = false;
     private BoxCollider coll;
 
-    
-
     public void CharacterControllerConstructor(GameObject player)
     {
         thePlayer = player;
 
         this.gameObject.AddComponent<CameraFollow>();
+        this.gameObject.GetComponent<CameraFollow>().CameraFollowConstructor(player.transform);
+
+        coll = thePlayer.GetComponent<BoxCollider>();
+        distToGround = coll.bounds.extents.y;
+    }
+
+    public void UpdatePlayer(GameObject player)
+    {
+        thePlayer = player;
+        
         this.gameObject.GetComponent<CameraFollow>().CameraFollowConstructor(player.transform);
 
         coll = thePlayer.GetComponent<BoxCollider>();
@@ -31,14 +39,13 @@ public class CharacterController2D : MonoBehaviour
             // is grounded
             isGrounded = CheckGrounded();
 
-            velocity.x = Mathf.Lerp(velocity.x, GameManager.Instance.runSpeed * Input.GetAxis("Horizontal"), GameManager.Instance.runSpeedDamping);
-
             if (isGrounded == true)
             {
                 velocity.y = 0;
 
                 if (Input.GetButtonDown("Jump") && pressedJump == false)
                 {
+                    GameManager.Instance.isJumping = true;
                     pressedJump = true;
 
                     velocity.y = GameManager.Instance.jumpSpeed;
@@ -49,31 +56,63 @@ public class CharacterController2D : MonoBehaviour
 
                 if (Input.GetAxis("Jump") <= 0)
                 {
-                    pressedJump = false;
+                    GameManager.Instance.isJumping = false;
+                    pressedJump = false;                  
                 }
             }
             else
             {
                 velocity.y -= GameManager.Instance.fallSpeed * Time.deltaTime;
             }
+        }
+    }
 
-            if(CheckLeftWall() == true)
+    private void LateUpdate()
+    {
+        if (thePlayer != null)
+        {
+            GameManager.Instance.playerVelocity = Input.GetAxis("Horizontal");
+
+            velocity.x = Mathf.Lerp(velocity.x, GameManager.Instance.runSpeed * GameManager.Instance.playerVelocity, GameManager.Instance.runSpeedDamping);
+
+            if (CheckLeftWall() == true)
             {
                 velocity.x -= 10;
             }
 
-            if(CheckRightWall() == true)
+            if (CheckRightWall() == true)
             {
                 velocity.x += 10;
             }
 
             Vector3 movementVector = new Vector3(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, 0);
 
+            //Debug.Log("Velocity X:" + velocity.x.ToString());
+
+            if (velocity.x < 0)
+            {
+                GameManager.Instance.playerFacingRight = false;
+
+                Vector3 theScale = thePlayer.transform.GetChild(0).transform.localScale;
+                theScale.z = -1;
+                thePlayer.transform.GetChild(0).transform.localScale = theScale;
+            }
+            else if (velocity.x > 0)
+            {
+                GameManager.Instance.playerFacingRight = true;
+
+                Vector3 theScale = thePlayer.transform.GetChild(0).transform.localScale;
+                theScale.z = 1;
+                thePlayer.transform.GetChild(0).transform.localScale = theScale;
+            }
+
             foreach (GameObject player in GameManager.Instance.activePlayers)
             {
                 player.transform.Translate(movementVector);
+                player.transform.GetChild(0).localScale = thePlayer.transform.GetChild(0).localScale;
             }
         }
+
     }
 
     bool CheckGrounded()
