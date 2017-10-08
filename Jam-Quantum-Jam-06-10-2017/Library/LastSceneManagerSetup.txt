@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Davide/Scenes/SpherewithDecoration.unity
+- path: Assets/Davide/Scenes/MenuProCore.unity
   isLoaded: 1
   isActive: 1
