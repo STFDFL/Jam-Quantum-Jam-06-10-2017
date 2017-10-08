@@ -178,12 +178,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) && gameHasEnded)
+        if ((Input.GetKeyDown(KeyCode.Space))  && gameHasEnded)
         {
             SceneManager.LoadScene("Elliot_Scene");
 
         }
-        if (Input.GetKeyDown(KeyCode.M) && gameHasEnded)
+        if (Input.GetKeyDown(KeyCode.Escape) && gameHasEnded)
         {
             SceneManager.LoadScene("MainMenu");
 

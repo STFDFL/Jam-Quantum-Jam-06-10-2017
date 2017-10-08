@@ -497,7 +497,7 @@ MonoBehaviour:
   - {fileID: 1655542555762408}
   obstacleType: 4
   locations: []
-  speed: 100
+  speed: 30
   delay: 3
 --- !u!135 &135300073102495914
 SphereCollider:

@@ -155,4 +155,4 @@ MonoBehaviour:
   obstacleType: 0
   locations: []
   speed: 50
-  delay: 3
+  delay: 5

@@ -583,7 +583,7 @@ MonoBehaviour:
   obstacleType: 3
   locations: []
   speed: 50
-  delay: 2
+  delay: 4
 --- !u!135 &135141539121345680
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -20,7 +20,7 @@ public class Mover : MonoBehaviour {
         switch (obstacleType)
         {
             case ObstacleType.Rotator:
-                StartCoroutine(ChangeSpeed(10,40));
+                StartCoroutine(ChangeSpeed(5,20));
                 break;
             case ObstacleType.Flyer:              
                 break;
@@ -120,7 +120,7 @@ public class Mover : MonoBehaviour {
     {
         float maxSize = 7f;
         float growFactor = 1.1f;
-        float waitTime = 0.1f;
+        float waitTime = 2f;
         float timer = 0;
 
         while (true)
