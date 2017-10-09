@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Elliot/Scenes/Elliot_Scene.unity
     guid: b97c39fcdfa404940a57e9a4b83c2833
+  - enabled: 1
+    path: Assets/Davide/Scenes/CheckThisOut.unity
+    guid: 9692d3b1e0671c94c8e2c41bc290b493

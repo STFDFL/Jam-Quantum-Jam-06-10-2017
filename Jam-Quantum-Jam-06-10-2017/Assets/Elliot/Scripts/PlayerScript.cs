@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case "Wall":
-                PlayerDead();
+                //PlayerDead();
                 break;
 
             case "mover":

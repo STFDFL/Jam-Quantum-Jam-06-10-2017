@@ -69,7 +69,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (thePlayer != null)
+        if (thePlayer != null && GameManager.Instance.gameHasEnded == false)
         {
             GameManager.Instance.playerVelocity = Input.GetAxis("Horizontal");
 

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Selector : MonoBehaviour {
 
     public GameObject[] lights;
+    public GameObject[] neutrons;
     int lightActive;
 
 	// Use this for initialization
@@ -17,7 +18,7 @@ public class Selector : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetKeyDown(KeyCode.S))
+		if(Input.GetKeyDown(KeyCode.D))
         {
             if (lightActive < 2)
             {
@@ -27,9 +28,14 @@ public class Selector : MonoBehaviour {
                     light.SetActive(false);
                 }
                 lights[lightActive].SetActive(true);
+                foreach (var n in neutrons)
+                {
+                    n.SetActive(false);
+                }
+                neutrons[lightActive].SetActive(true);
             }          
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             if(lightActive > 0)
             {
@@ -39,6 +45,11 @@ public class Selector : MonoBehaviour {
                     light.SetActive(false);
                 }
                 lights[lightActive].SetActive(true);
+                foreach (var n in neutrons)
+                {
+                    n.SetActive(false);
+                }
+                neutrons[lightActive].SetActive(true);
             }         
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -50,7 +61,7 @@ public class Selector : MonoBehaviour {
             if (lightActive == 1)
             {
                 //TODO add CreditScene
-                SceneManager.LoadScene("");
+                SceneManager.LoadScene("CheckThisOut");
             }
             if (lightActive == 2)
             {
